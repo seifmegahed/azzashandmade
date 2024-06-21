@@ -10,6 +10,7 @@ import {
 } from "firebase/auth";
 import { auth } from "../firebase-config";
 import { AuthContext, AuthContextModel } from "./authContext";
+import Loading from "../components/Loading";
 
 type AuthProviderProps = {
   children: React.ReactNode;
@@ -47,7 +48,13 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
   return (
     <AuthContext.Provider value={value}>
-      {loading ? <div>Loading...</div> : children}
+      {loading ? (
+        <div className="w-screen h-screen flex items-center justify-center">
+          <Loading />
+        </div>
+      ) : (
+        children
+      )}
     </AuthContext.Provider>
   );
 };
