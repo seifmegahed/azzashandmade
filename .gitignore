@@ -26,6 +26,7 @@ dist-ssr
 
 #Enviroment variables
 .env
+.vscode
 
 #Firebase
 .firebase
