@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
-import { uploadFile } from "../Storage/storage";
+import { deleteFile, uploadFile } from "../Storage/storage";
 import Loading from "./Loading";
+import DeleteIcon from "../icons/DeleteIcon";
 
 function CloudUploadIcon() {
   return (
@@ -54,10 +55,13 @@ export default function ImageUpload() {
     return (
       <div className="row-span-3 flex items-center justify-center w-72 h-64 border-gray-200 border-2 bg-gray-50 rounded-lg relative">
         <div
-          className="absolute top-3 right-3 hover:scale-125 rounded-full bg-white border-1 border-gray-600 p-2 flex items-center cursor-pointer justify-center text-center"
-          onClick={() => setFile(null)}
+          className="text-red-400 absolute top-3 right-3 hover:scale-125 rounded-full bg-white border-1 border-gray-600 p-2 flex items-center cursor-pointer justify-center text-center"
+          onClick={() => {
+            deleteFile(file.path);
+            setFile(null);
+          }}
         >
-          x
+          <DeleteIcon />
         </div>
         <img
           src={file.url}

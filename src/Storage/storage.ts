@@ -1,4 +1,5 @@
 import {
+  deleteObject,
   getDownloadURL,
   getStorage,
   ref,
@@ -27,4 +28,11 @@ export async function uploadFile(file: File) {
     return { path: filePath, url: url };
   }
   return null;
+}
+
+export async function deleteFile(filePath: string) {
+  const fileRef = ref(storage,filePath);
+  await deleteObject(fileRef).then(() => {
+    console.log("Delete success", filePath);
+  });
 }
