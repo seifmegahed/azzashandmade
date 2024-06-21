@@ -1,23 +1,9 @@
 import photo1 from "../assets/AzzaPhoto1.jpg";
+import NavBar from "../components/Navbar";
 
 const titleText = "Unique Jewelry & Accessories Crafted with Love";
 const subTitleText =
   "From delicate earrings to statement necklaces, find the perfect piece to express your individuality. Our jewelry and accessories are designed for the modern woman who appreciates quality, craftsmanship, and a touch of Egyptian flair.";
-
-function NavBar() {
-  return (
-    <div className="flex justify-between items-center w-full text-2xl font-thin ">
-      <div className="flex items-center">
-        <p className="cursor-pointer hover:bg-white/45 p-4 text-3xl">Azza</p>
-      </div>
-      <div className="flex items-center">
-        <div className="cursor-pointer hover:bg-white/45 p-4">About</div>
-        <div className="cursor-pointer hover:bg-white/45 p-4">Store</div>
-        <div className="cursor-pointer hover:bg-white/45 p-4">Contact</div>
-      </div>
-    </div>
-  );
-}
 
 function Hero() {
   return (
