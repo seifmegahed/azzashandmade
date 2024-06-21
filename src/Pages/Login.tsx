@@ -58,7 +58,7 @@ export default function Login() {
           required
           span={2}
         />
-        <div className="flex items-center justify-between w-full gap-2 col-span-2">
+        <div className="flex items-center justify-between w-full gap-2 sm:col-span-2">
           <div
             className={`text-red-500 text-sm ${
               error ? "visible" : "invisible"

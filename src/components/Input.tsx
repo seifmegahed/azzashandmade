@@ -10,7 +10,7 @@ export default function Input(props: {
   const { title, name, type, required, span, value } = props;
   const handleChange = props.onChange;
   return (
-    <div className={`sm:col-span-${span ?? 1}`}>
+    <div className={`sm:col-span-${span} col-span-1`}>
       <label className="block text-gray-700 text-sm font-bold mb-2">
         {title}
         <input
