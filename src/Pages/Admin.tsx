@@ -2,35 +2,9 @@ import AdminNavBar from "../components/AdminNavbar";
 import Form from "../components/Form";
 import ImageUpload from "../components/ImageUpload";
 import Input from "../components/Input";
+import Select from "../components/Select";
 
 const categories = ["Bracelet", "Neckless", "Ring", "Earring", "Pendant"];
-
-function Select(props: {
-  title: string;
-  name: string;
-  options: string[];
-  required: boolean;
-}) {
-  const { title, name, options, required } = props;
-  return (
-    <div className="">
-      <label className="block text-gray-700 text-sm font-bold mb-2">
-        {title}
-        <select
-          name={name}
-          required={required}
-          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-        >
-          {options.map((option) => (
-            <option key={option} value={option}>
-              {option}
-            </option>
-          ))}
-        </select>
-      </label>
-    </div>
-  );
-}
 
 export default function Admin() {
   return (
