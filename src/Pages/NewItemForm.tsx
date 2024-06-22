@@ -32,13 +32,13 @@ const validateForm = (item: ItemType) => {
     errors.push("Price is required");
   }
 
-  if (!item.size) {
-    errors.push("Size is required");
-  }
+  // if (!item.size) {
+  //   errors.push("Size is required");
+  // }
 
-  if (!item.description) {
-    errors.push("Description is required");
-  }
+  // if (!item.description) {
+  //   errors.push("Description is required");
+  // }
   if (!item.image.url) {
     errors.push("Image is required");
   }
@@ -62,6 +62,7 @@ export default function NewItemForm() {
   return (
     <Form>
       <ImageUpload
+        value={item.image}
         onChange={(image) => setItem((prev) => ({ ...prev, image }))}
       />
       <Input

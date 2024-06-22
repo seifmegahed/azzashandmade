@@ -6,15 +6,24 @@ import Admin from "./Pages/Admin";
 
 function App() {
   const { user } = useAuth();
-
-  return (
-    <div className="w-screen h-screen font-inter">
-      <Routes>
-        <Route path="/" element={<Landing />} />
-        <Route path="/admin" element={user ? <Admin /> : <Login />} />
-      </Routes>
-    </div>
-  );
+  if (!user)
+    return (
+      <div className="w-screen h-screen font-inter">
+        <Routes>
+          <Route path="/" element={<Landing />} />
+          <Route path="/admin" element={<Login />} />
+        </Routes>
+      </div>
+    );
+  else
+    return (
+      <div className="w-screen h-screen font-inter">
+        <Routes>
+          <Route path="/" element={<Landing />} />
+          <Route path="/admin" element={<Admin />} />
+        </Routes>
+      </div>
+    );
 }
 
 export default App;
