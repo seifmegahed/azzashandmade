@@ -1,5 +1,6 @@
 import photo1 from "../assets/AzzaPhoto1.jpg";
 import NavBar from "../components/Navbar";
+import PageWrapper from "../components/PageWrapper";
 
 const titleText = "Unique Jewelry & Accessories Crafted with Love";
 const subTitleText =
@@ -18,11 +19,10 @@ function Hero() {
     </div>
   );
 }
-export default function Landing() { 
+export default function Landing() {
   return (
-    <div className="w-full md:h-screen h-fit bg-pink-50 flex flex-col">
-      <NavBar />
+    <PageWrapper navbar={<NavBar />}>
       <Hero />
-    </div>
+    </PageWrapper>
   );
 }

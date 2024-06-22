@@ -3,6 +3,8 @@ import { useAuth } from "../context/authContext";
 import { checkEmailValidity, checkPasswordValidity } from "../utils/validation";
 import Form from "../components/Form";
 import Input from "../components/Input";
+import PageWrapper from "../components/PageWrapper";
+import NavBar from "../components/Navbar";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -37,7 +39,7 @@ export default function Login() {
   if (loading) return <div>Loading...</div>;
 
   return (
-    <div className="w-full h-screen flex flex-col items-center justify-center bg-pink-100 text-gray-800">
+    <PageWrapper navbar={<NavBar />}>
       <div className="text-4xl font-thin p-5">Admin Login</div>
       <Form>
         <Input
@@ -80,6 +82,6 @@ export default function Login() {
       <p className="text-center text-gray-500 text-xs">
         &copy;2024 Azza's Handmade. All rights reserved.
       </p>
-    </div>
+    </PageWrapper>
   );
 }

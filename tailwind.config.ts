@@ -9,6 +9,9 @@ export default {
         sans: ["var(--font-geist-sans)", ...fontFamily.sans],
         inter: ["Inter"],
       },
+      aspectRatio: {
+        '9/8': "9 / 8",
+      },
     },
   },
   plugins: [],
