@@ -5,6 +5,7 @@ import {
   ref,
   uploadBytes,
 } from "firebase/storage";
+import { generateGUID } from "../utils/guid";
 
 const storage = getStorage();
 const bucket = ref(storage, "images");
@@ -12,7 +13,7 @@ const bucket = ref(storage, "images");
 export async function uploadFile(file: File) {
   let filePath: string | null = null;
   let url: string | null = null;
-  await uploadBytes(ref(bucket, file.name), file)
+  await uploadBytes(ref(bucket, generateGUID() + "/" + file.name), file)
     .then(async (snapshot) => {
       const fileRef = snapshot.ref;
       await getDownloadURL(fileRef).then((downloadURL) => {
@@ -31,7 +32,7 @@ export async function uploadFile(file: File) {
 }
 
 export async function deleteFile(filePath: string) {
-  const fileRef = ref(storage,filePath);
+  const fileRef = ref(storage, filePath);
   await deleteObject(fileRef).then(() => {
     console.log("Delete success", filePath);
   });

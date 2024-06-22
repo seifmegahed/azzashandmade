@@ -4,9 +4,9 @@ import ImageUpload from "../components/ImageUpload";
 import Input from "../components/Input";
 import Select from "../components/Select";
 import { CreateItem, ItemType } from "../Firestore";
+import Loading from "../components/Loading";
 
 const categories = ["Bracelet", "Neckless", "Ring", "Earring", "Pendant"];
-
 
 const defaultItem: ItemType = {
   title: "",
@@ -31,14 +31,6 @@ const validateForm = (item: ItemType) => {
   if (!item.price) {
     errors.push("Price is required");
   }
-
-  // if (!item.size) {
-  //   errors.push("Size is required");
-  // }
-
-  // if (!item.description) {
-  //   errors.push("Description is required");
-  // }
   if (!item.image.url) {
     errors.push("Image is required");
   }
@@ -58,9 +50,15 @@ const handleSubmit = async (item: ItemType) => {
 
 export default function NewItemForm() {
   const [item, setItem] = useState(defaultItem);
+  const [loading, setLoading] = useState(false);
 
   return (
     <Form>
+      {loading && (
+        <div className="flex items-center justify-center w-full h-full absolute bg-white opacity-50 top-0 left-0 z-10">
+          <Loading />
+        </div>
+      )}
       <ImageUpload
         value={item.image}
         onChange={(image) => setItem((prev) => ({ ...prev, image }))}
@@ -110,7 +108,12 @@ export default function NewItemForm() {
         <button
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-48"
           type="button"
-          onClick={() => handleSubmit(item).then(() => setItem(defaultItem))}
+          onClick={() => {
+            setLoading(true);
+            handleSubmit(item).then(() => setItem(defaultItem)).finally(() =>
+              setLoading(false)
+            );
+          }}
         >
           Create
         </button>

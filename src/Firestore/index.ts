@@ -1,9 +1,8 @@
 import {
   getFirestore,
   collection,
-  doc,
-  setDoc,
   Timestamp,
+  addDoc,
 } from "firebase/firestore";
 
 export type ItemType = {
@@ -20,9 +19,7 @@ const itemsCollectionName = "items";
 const itemsCollection = collection(db, itemsCollectionName);
 
 export async function CreateItem(item: ItemType) {
-  const docRef = doc(itemsCollection, item.title);
-  await setDoc(docRef, {
-    id: docRef.id,
+  await addDoc(itemsCollection, {
     ...item,
     createdAt: Timestamp.now(),
     updatedAt: Timestamp.now(),
