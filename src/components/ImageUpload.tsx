@@ -2,30 +2,9 @@ import { useEffect, useState } from "react";
 import { deleteFile, uploadFile } from "../Storage/storage";
 import Loading from "./Loading";
 import DeleteIcon from "../icons/DeleteIcon";
+import CloudUploadIcon from "../icons/CloudUploadIcon";
 
-function CloudUploadIcon() {
-  return (
-    <svg
-      className="w-8 h-8 mb-4 text-gray-500"
-      aria-hidden="true"
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 20 16"
-    >
-      <path
-        stroke="currentColor"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="2"
-        d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
-      />
-    </svg>
-  );
-}
-
-export default function ImageUpload() {
-  // const inputRef = useRef<HTMLInputElement>(null);
-  // const handleClick = () => inputRef.current?.click();
+export default function ImageUpload(props: { onChange: ({ url, path }: { url: string; path: string }) => void }) {
   const [loading, setLoading] = useState(false);
   const [file, setFile] = useState<{
     url: string;
@@ -41,6 +20,7 @@ export default function ImageUpload() {
       console.log(uploadStatus);
       if (uploadStatus == null) return;
       setFile(uploadStatus);
+      props.onChange(uploadStatus);
       setLoading(false);
     });
   };
@@ -78,7 +58,7 @@ export default function ImageUpload() {
       const file = target.files[0];
       handleUpload(file);
     });
-  }, []);
+  });
 
   if (file?.url)
     return (
